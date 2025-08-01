@@ -2,7 +2,20 @@ name: Events Demo 1
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - 'dev-*' # Matches branches like dev-1, dev-2, etc.
+      - 'feat-**' # Matches branches like feat-1, feat-2, etc.
+
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # Matches branches like dev-1, dev-2, etc.
+      - 'feat-**' # Matches branches like feat-1, feat-2, etc.
+
+    paths-ignore:
+      - 'github/workflows/*' # Ignore changes to workflow files
 jobs:
   deploy:
     runs-on: ubuntu-latest
